@@ -1,0 +1,113 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "CircleNumber",
+"language": "GDScript",
+"path": "res://scripts/circle.gd"
+}, {
+"base": "InputEventAction",
+"class": "InputEventMultiScreenDrag",
+"language": "GDScript",
+"path": "res://lib/GDTIM-v2_1_0/CustomInputEvents/InputEventMultiScreenDrag.gd"
+}, {
+"base": "InputEventAction",
+"class": "InputEventMultiScreenLongPress",
+"language": "GDScript",
+"path": "res://lib/GDTIM-v2_1_0/CustomInputEvents/InputEventMultiScreenLongPress.gd"
+}, {
+"base": "InputEventAction",
+"class": "InputEventMultiScreenSwipe",
+"language": "GDScript",
+"path": "res://lib/GDTIM-v2_1_0/CustomInputEvents/InputEventMultiScreenSwipe.gd"
+}, {
+"base": "InputEventAction",
+"class": "InputEventMultiScreenTap",
+"language": "GDScript",
+"path": "res://lib/GDTIM-v2_1_0/CustomInputEvents/InputEventMultiScreenTap.gd"
+}, {
+"base": "InputEventAction",
+"class": "InputEventScreenPinch",
+"language": "GDScript",
+"path": "res://lib/GDTIM-v2_1_0/CustomInputEvents/InputEventScreenPinch.gd"
+}, {
+"base": "InputEventAction",
+"class": "InputEventScreenTwist",
+"language": "GDScript",
+"path": "res://lib/GDTIM-v2_1_0/CustomInputEvents/InputEventScreenTwist.gd"
+}, {
+"base": "InputEventAction",
+"class": "InputEventSingleScreenDrag",
+"language": "GDScript",
+"path": "res://lib/GDTIM-v2_1_0/CustomInputEvents/InputEventSingleScreenDrag.gd"
+}, {
+"base": "InputEventAction",
+"class": "InputEventSingleScreenLongPress",
+"language": "GDScript",
+"path": "res://lib/GDTIM-v2_1_0/CustomInputEvents/InputEventSingleScreenLongPress.gd"
+}, {
+"base": "InputEventAction",
+"class": "InputEventSingleScreenSwipe",
+"language": "GDScript",
+"path": "res://lib/GDTIM-v2_1_0/CustomInputEvents/InputEventSingleScreenSwipe.gd"
+}, {
+"base": "InputEventAction",
+"class": "InputEventSingleScreenTap",
+"language": "GDScript",
+"path": "res://lib/GDTIM-v2_1_0/CustomInputEvents/InputEventSingleScreenTap.gd"
+}, {
+"base": "InputEventAction",
+"class": "InputEventSingleScreenTouch",
+"language": "GDScript",
+"path": "res://lib/GDTIM-v2_1_0/CustomInputEvents/InputEventSingleScreenTouch.gd"
+}, {
+"base": "InputEventAction",
+"class": "RawGesture",
+"language": "GDScript",
+"path": "res://lib/GDTIM-v2_1_0/RawGesture.gd"
+} ]
+_global_script_class_icons={
+"CircleNumber": "",
+"InputEventMultiScreenDrag": "",
+"InputEventMultiScreenLongPress": "",
+"InputEventMultiScreenSwipe": "",
+"InputEventMultiScreenTap": "",
+"InputEventScreenPinch": "",
+"InputEventScreenTwist": "",
+"InputEventSingleScreenDrag": "",
+"InputEventSingleScreenLongPress": "",
+"InputEventSingleScreenSwipe": "",
+"InputEventSingleScreenTap": "",
+"InputEventSingleScreenTouch": "",
+"RawGesture": ""
+}
+
+[application]
+
+config/name="Circularis"
+run/main_scene="res://scenes/Game.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+InputManager="*res://lib/GDTIM-v2_1_0/InputManager.gd"
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
