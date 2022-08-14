@@ -12,7 +12,7 @@ var rng = RandomNumberGenerator.new()
 var _scale
 var velocity = Vector2.ZERO
 
-var GRAVITY = 300
+var GRAVITY = 9
 
 func _ready():
 	rng.randomize()
@@ -63,9 +63,12 @@ func _process(_delta):
 		velocity = Vector2.ZERO
 
 func _physics_process(delta):
-	velocity.y += delta * GRAVITY
-	velocity = move_and_slide(velocity, Vector2.DOWN)
+	var collision = move_and_collide(velocity * delta)
+	if (collision):
+		velocity = velocity.slide(collision.normal)
 
+	velocity.y += GRAVITY
+	
 func _on_Area2D_input_event(_viewport, event: InputEvent, _shapeIdx):
 	if (event is InputEventMouseButton and
 		event.button_index == BUTTON_LEFT and
