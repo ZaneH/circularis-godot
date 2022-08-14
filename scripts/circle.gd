@@ -52,6 +52,16 @@ func set_appropriate_scale():
 		
 	update_children_scales()
 
+func _process(_delta):
+	var view_size = get_viewport().size
+	if (position.y > view_size.y):
+		position = Vector2(
+			rng.randf_range(0, view_size.x),
+			rng.randf_range(-200, -100)
+		)
+		
+		velocity = Vector2.ZERO
+
 func _physics_process(delta):
 	velocity.y += delta * GRAVITY
 	velocity = move_and_slide(velocity, Vector2.DOWN)
