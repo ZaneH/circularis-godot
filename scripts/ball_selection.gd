@@ -1,5 +1,6 @@
 extends Node
 
-func _handle_circle_pressed(circle: CircleNumber):	
-	if (circle.material is ShaderMaterial):
-		(circle.material as ShaderMaterial).set_shader_param("line_thickness", 8)
+func _handle_circle_pressed(circle: CircleNumber):
+	var mat = circle.get_node("Sprite").material as ShaderMaterial
+	if (mat):
+		mat.set_shader_param("width", 24)

@@ -9,7 +9,7 @@ var MAX_HEIGHT_TO_DROP = -400
 
 onready var circle_1 = preload("res://scenes/Circle1.tscn")
 
-func _ready():	
+func _ready():
 	rng.randomize()
 	spawn_circles()
 	
@@ -42,11 +42,5 @@ func create_circle(number: int):
 	)
 	
 	new_circle.connect("circle_pressed", $BallSelection, "_handle_circle_pressed")
-	
-	var mat = ShaderMaterial.new()
-	mat.shader = load("res://shaders/Outline2D/outline2D_inner.shader")
-	mat.shader.set("line_color", Color.blue)
-	mat.shader.set("line_thickness", 80)
-	new_circle.material = mat
 	
 	add_child(new_circle)
