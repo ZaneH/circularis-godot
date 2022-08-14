@@ -16,6 +16,7 @@ func _ready():
 	spawn_circles()
 	# warning-ignore:return_value_discarded
 	get_tree().connect("screen_resized", self, "redrop_circles")
+	$CircleSelection.connect("scored_point", self, "_handle_scored_point")
 	
 func spawn_circles():
 	var answers = []
@@ -66,3 +67,11 @@ func create_circle(number: int):
 	
 	add_child(new_circle)
 	circles.append(new_circle)
+
+func _handle_scored_point(selected_circles: Array):
+	# remove selected_circles from the spawned circles array when a point is scored
+	for c in selected_circles:
+		circles.erase(c)
+
+	if (len(circles) == 0):
+		get_tree().change_scene("res://scenes/Menu.tscn")

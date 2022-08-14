@@ -1,5 +1,7 @@
 extends Node
 
+signal scored_point
+
 # Store the circles that are selected
 var selected_circles = []
 
@@ -7,6 +9,7 @@ func _handle_circle_pressed(circle: CircleNumber):
 	select_circle(circle, !selected_circles.has(circle))
 	
 	if (check_valid_three()):
+		emit_signal("scored_point", selected_circles)
 		remove_circles_from_screen(selected_circles)
 	elif (len(selected_circles) >= 3):
 		deselect_all_circles()
