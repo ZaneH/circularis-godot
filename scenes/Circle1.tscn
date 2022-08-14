@@ -38,6 +38,7 @@ shader_param/line_color = Color( 0.466667, 0.839216, 0.364706, 1 )
 shader_param/line_thickness = 0.0
 
 [node name="Circle1" type="KinematicBody2D"]
+collision_mask = 3
 script = ExtResource( 1 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
