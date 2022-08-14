@@ -15,7 +15,6 @@ func _ready():
 	var texture = load("res://assets/menu_circles/rush_mode.png")
 	play_rush.number = 1
 	play_rush.load_custom_texture(texture)
-	play_rush.mobile_scaling = false
 	play_rush.set_custom_scale(0.66)
 	play_rush.position = Vector2(
 		rng.randf_range(0, view_size.x),
@@ -30,5 +29,3 @@ func _handle_menu_pressed(circle: CircleNumber):
 	# Rush mode
 	if (circle.number == 1):
 		get_tree().change_scene("res://scenes/Rush.tscn")
-	else:
-		print("no")

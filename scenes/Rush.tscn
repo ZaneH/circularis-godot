@@ -57,7 +57,7 @@ is_left = true
 [node name="CircleManager" type="Node" parent="."]
 script = ExtResource( 1 )
 
-[node name="BallSelection" type="Node" parent="CircleManager"]
+[node name="CircleSelection" type="Node" parent="CircleManager"]
 script = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

@@ -54,8 +54,15 @@ func create_circle(number: int):
 	)
 	
 	new_circle.load_number_texture()
+	new_circle.connect("circle_pressed", $CircleSelection, "_handle_circle_pressed")
 	
-	new_circle.connect("circle_pressed", $BallSelection, "_handle_circle_pressed")
+	var _scale
+	if (view_size.x > 1000):
+		_scale = rng.randf_range(0.4, 0.7)
+	else:
+		_scale = rng.randf_range(0.4, 0.6)
+		
+	new_circle.set_custom_scale(_scale)
 	
 	add_child(new_circle)
 	circles.append(new_circle)
