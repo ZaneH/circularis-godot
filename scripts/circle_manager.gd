@@ -1,11 +1,13 @@
 extends Node
 
-var rng = RandomNumberGenerator.new()
-var spawn_limit = 15
-var circles = []
-
 var MIN_HEIGHT_TO_DROP = -1400
 var MAX_HEIGHT_TO_DROP = -600
+
+var rng = RandomNumberGenerator.new()
+
+# spawn_limit must be divisble by 3
+var spawn_limit = 15
+var circles = []
 
 onready var circle_1 = preload("res://scenes/Circle1.tscn")
 

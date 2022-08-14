@@ -4,8 +4,6 @@ class_name CircleNumber
 
 signal circle_pressed
 
-onready var OutlineShader = load("res://shaders/Outline2D/smooth_outline.shader")
-
 var number: int
 var rng = RandomNumberGenerator.new()
 
@@ -13,6 +11,8 @@ var _scale
 var velocity = Vector2.ZERO
 
 var GRAVITY = 9.8
+
+onready var OutlineShader = load("res://shaders/Outline2D/smooth_outline.shader")
 
 func _ready():
 	rng.randomize()

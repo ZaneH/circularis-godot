@@ -10,7 +10,12 @@ export var is_funnel_top_right = false
 
 var SAFE_ZONE = 400
 
-func _process(_delta):
+func _ready():
+	# warning-ignore:return_value_discarded
+	get_tree().connect("screen_resized", self, "resize_bounds")
+	resize_bounds()
+	
+func resize_bounds():
 	var line = shape as SegmentShape2D
 	var view_size = get_viewport().size
 	
