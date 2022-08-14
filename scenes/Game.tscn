@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/ball_selection.gd" type="Script" id=1]
 [ext_resource path="res://scripts/screen_bound.gd" type="Script" id=2]
@@ -7,6 +7,13 @@
 [sub_resource type="SegmentShape2D" id=3]
 a = Vector2( 1024, 0 )
 b = Vector2( 1024, 600 )
+
+[sub_resource type="SegmentShape2D" id=5]
+a = Vector2( 1024, 0 )
+b = Vector2( 1424, -400 )
+
+[sub_resource type="SegmentShape2D" id=6]
+b = Vector2( -400, -400 )
 
 [sub_resource type="SegmentShape2D" id=4]
 a = Vector2( 0, 600 )
@@ -24,6 +31,16 @@ b = Vector2( 0, 0 )
 shape = SubResource( 3 )
 script = ExtResource( 2 )
 is_right = true
+
+[node name="RTopFunnel" type="CollisionShape2D" parent="Walls"]
+shape = SubResource( 5 )
+script = ExtResource( 2 )
+is_funnel_top_right = true
+
+[node name="LTopFunnel" type="CollisionShape2D" parent="Walls"]
+shape = SubResource( 6 )
+script = ExtResource( 2 )
+is_funnel_top_left = true
 
 [node name="Bottom" type="CollisionShape2D" parent="Walls"]
 shape = SubResource( 4 )
