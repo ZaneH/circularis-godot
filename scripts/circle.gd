@@ -31,7 +31,7 @@ func _ready():
 	$TouchArea.add_child(touch_collider)
 	
 	if (mobile_scaling):
-		set_appropriate_scale()
+		set_mobile_adjusted_scale()
 	
 func load_number_texture():
 	var sprite = get_node("Sprite")
@@ -51,7 +51,7 @@ func set_custom_scale(scale: float):
 	_scale = scale
 	update_children_scales()
 	
-func set_appropriate_scale():
+func set_mobile_adjusted_scale():
 	var view_size = get_viewport().size
 	
 	if (view_size.x > 1000):

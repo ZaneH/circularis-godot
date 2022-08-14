@@ -4,7 +4,7 @@
 [ext_resource path="res://scripts/circle_selection.gd" type="Script" id=2]
 [ext_resource path="res://scripts/screen_bound.gd" type="Script" id=3]
 [ext_resource path="res://assets/circ-button.png" type="Texture" id=4]
-[ext_resource path="res://scenes/menu_handler.gd" type="Script" id=5]
+[ext_resource path="res://scripts/menu_handler.gd" type="Script" id=5]
 
 [sub_resource type="SegmentShape2D" id=3]
 a = Vector2( 1024, 0 )
@@ -62,6 +62,9 @@ script = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="MenuHandler" type="Node" parent="CanvasLayer"]
+script = ExtResource( 5 )
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchor_right = 1.0
 
@@ -84,7 +87,7 @@ patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer/Menu"]
+[node name="MarginMenu" type="MarginContainer" parent="CanvasLayer/HBoxContainer/Menu"]
 margin_left = 20.0
 margin_top = 10.0
 margin_right = 96.0
@@ -92,7 +95,7 @@ margin_bottom = 50.0
 custom_constants/margin_right = 20
 custom_constants/margin_left = 20
 
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/Menu/MarginContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/Menu/MarginMenu"]
 margin_left = 20.0
 margin_top = 13.0
 margin_right = 56.0
@@ -121,7 +124,7 @@ patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer/More"]
+[node name="MarginMore" type="MarginContainer" parent="CanvasLayer/HBoxContainer/More"]
 margin_left = 20.0
 margin_top = 10.0
 margin_right = 93.0
@@ -129,7 +132,7 @@ margin_bottom = 50.0
 custom_constants/margin_right = 20
 custom_constants/margin_left = 20
 
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/More/MarginContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/More/MarginMore"]
 margin_left = 20.0
 margin_top = 13.0
 margin_right = 53.0
@@ -138,7 +141,5 @@ text = "More"
 align = 1
 valign = 1
 
-[node name="MenuHandler" type="Node" parent="."]
-script = ExtResource( 5 )
-
-[connection signal="gui_input" from="CanvasLayer/HBoxContainer/Menu/MarginContainer" to="MenuHandler" method="_on_MarginContainer_gui_input"]
+[connection signal="gui_input" from="CanvasLayer/HBoxContainer/Menu/MarginMenu" to="CanvasLayer/MenuHandler" method="_on_MarginMenu_gui_input"]
+[connection signal="gui_input" from="CanvasLayer/HBoxContainer/More/MarginMore" to="CanvasLayer/MenuHandler" method="_on_MarginMore_gui_input"]

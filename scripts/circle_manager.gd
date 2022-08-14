@@ -35,7 +35,7 @@ func spawn_circles():
 func redrop_circles():
 	var view_size = get_viewport().size
 	for circle in circles:
-		circle.set_appropriate_scale()
+		circle.set_mobile_adjusted_scale()
 		circle.velocity = Vector2.ZERO
 		circle.position = Vector2(
 			rng.randf_range(0, view_size.x),

@@ -2,7 +2,7 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 
-var MIN_HEIGHT_TO_DROP = -800
+var MIN_HEIGHT_TO_DROP = -600
 var MAX_HEIGHT_TO_DROP = -200
 
 onready var Circle1 = preload("res://scenes/Circle1.tscn")
