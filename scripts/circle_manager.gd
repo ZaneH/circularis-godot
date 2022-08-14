@@ -18,10 +18,6 @@ func spawn_circles():
 	var numbers1 = []
 	var numbers2 = []
 
-	var answer1
-	var answer2
-	var answer3
-	
 	for i in range(7):
 		answers.append(rng.randi_range(2, 21))
 		numbers1.append(rng.randi_range(1, answers[i] - 1))

@@ -7,7 +7,7 @@ export var is_right = false
 
 var SAFE_ZONE = 400
 
-func _process(delta):
+func _process(_delta):
 	var line = shape as SegmentShape2D
 	var view_size = get_viewport().size
 	
