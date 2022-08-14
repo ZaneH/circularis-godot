@@ -1,0 +1,144 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/circle_manager.gd" type="Script" id=1]
+[ext_resource path="res://scripts/circle_selection.gd" type="Script" id=2]
+[ext_resource path="res://scripts/screen_bound.gd" type="Script" id=3]
+[ext_resource path="res://assets/circ-button.png" type="Texture" id=4]
+[ext_resource path="res://scenes/menu_handler.gd" type="Script" id=5]
+
+[sub_resource type="SegmentShape2D" id=3]
+a = Vector2( 1024, 0 )
+b = Vector2( 1024, 600 )
+
+[sub_resource type="SegmentShape2D" id=5]
+a = Vector2( 1024, 0 )
+b = Vector2( 1424, -400 )
+
+[sub_resource type="SegmentShape2D" id=6]
+b = Vector2( -400, -400 )
+
+[sub_resource type="SegmentShape2D" id=4]
+a = Vector2( 0, 600 )
+b = Vector2( 1024, 600 )
+
+[sub_resource type="SegmentShape2D" id=2]
+a = Vector2( 0, 600 )
+b = Vector2( 0, 0 )
+
+[node name="Game" type="Node2D"]
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="Right" type="CollisionShape2D" parent="Walls"]
+shape = SubResource( 3 )
+script = ExtResource( 3 )
+is_right = true
+
+[node name="RTopFunnel" type="CollisionShape2D" parent="Walls"]
+shape = SubResource( 5 )
+script = ExtResource( 3 )
+is_funnel_top_right = true
+
+[node name="LTopFunnel" type="CollisionShape2D" parent="Walls"]
+shape = SubResource( 6 )
+script = ExtResource( 3 )
+is_funnel_top_left = true
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls"]
+shape = SubResource( 4 )
+script = ExtResource( 3 )
+is_bottom = true
+
+[node name="Left" type="CollisionShape2D" parent="Walls"]
+shape = SubResource( 2 )
+script = ExtResource( 3 )
+is_left = true
+
+[node name="CircleManager" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="BallSelection" type="Node" parent="CircleManager"]
+script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+
+[node name="Menu" type="MarginContainer" parent="CanvasLayer/HBoxContainer"]
+margin_right = 116.0
+margin_bottom = 60.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 10
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 10
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/HBoxContainer/Menu"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 96.0
+margin_bottom = 50.0
+texture = ExtResource( 4 )
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer/Menu"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 96.0
+margin_bottom = 50.0
+custom_constants/margin_right = 20
+custom_constants/margin_left = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/Menu/MarginContainer"]
+margin_left = 20.0
+margin_top = 13.0
+margin_right = 56.0
+margin_bottom = 27.0
+text = "Menu"
+align = 1
+valign = 1
+
+[node name="More" type="MarginContainer" parent="CanvasLayer/HBoxContainer"]
+margin_left = 120.0
+margin_right = 233.0
+margin_bottom = 60.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 10
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 10
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/HBoxContainer/More"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 93.0
+margin_bottom = 50.0
+texture = ExtResource( 4 )
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer/More"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 93.0
+margin_bottom = 50.0
+custom_constants/margin_right = 20
+custom_constants/margin_left = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/More/MarginContainer"]
+margin_left = 20.0
+margin_top = 13.0
+margin_right = 53.0
+margin_bottom = 27.0
+text = "More"
+align = 1
+valign = 1
+
+[node name="MenuHandler" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[connection signal="gui_input" from="CanvasLayer/HBoxContainer/Menu/MarginContainer" to="MenuHandler" method="_on_MarginContainer_gui_input"]

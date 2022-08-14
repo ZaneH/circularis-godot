@@ -9,6 +9,7 @@ var rng = RandomNumberGenerator.new()
 
 var _scale
 var velocity = Vector2.ZERO
+var mobile_scaling = true
 
 var GRAVITY = 9.8
 
@@ -17,30 +18,38 @@ onready var OutlineShader = load("res://shaders/Outline2D/smooth_outline.shader"
 func _ready():
 	rng.randomize()
 	
-	set_appropriate_scale()
-	
-	var sprite: Sprite = get_node("Sprite")
-	var texture = load("res://assets/circles/%dball.png" % number)
-	
-	update_children_scales()
-	
-	var touch_collider = $Collider.duplicate()
-	$TouchArea.add_child(touch_collider)
-	
-	sprite.texture = texture
-	
 	var mat = ShaderMaterial.new()
 
+	# outline for circle selection
 	mat.shader = OutlineShader.duplicate()
 	mat.set_shader_param("color", Color.greenyellow)
 	mat.set_shader_param("width", 0)
 	mat.set_shader_param("inside", true)
 	self.get_node("Sprite").material = mat
 	
+	var touch_collider = $Collider.duplicate()
+	$TouchArea.add_child(touch_collider)
+	
+	if (mobile_scaling):
+		set_appropriate_scale()
+	
+func load_number_texture():
+	var sprite = get_node("Sprite")
+	var texture = load("res://assets/circles/%dball.png" % number)
+	sprite.texture = texture
+	
+func load_custom_texture(image_texture: Texture):
+	var sprite = get_node("Sprite")
+	sprite.texture = image_texture
+	
 func update_children_scales():
 	set_scale(Vector2(_scale, _scale))
 	$Collider.scale = Vector2(_scale, _scale)
 	$Sprite.scale = Vector2(_scale, _scale)
+	
+func set_custom_scale(scale: float):
+	_scale = scale
+	update_children_scales()
 	
 func set_appropriate_scale():
 	var view_size = get_viewport().size

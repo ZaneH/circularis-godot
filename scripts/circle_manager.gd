@@ -9,7 +9,7 @@ var rng = RandomNumberGenerator.new()
 var spawn_limit = 15
 var circles = []
 
-onready var circle_1 = preload("res://scenes/Circle1.tscn")
+onready var Circle1 = preload("res://scenes/Circle1.tscn")
 
 func _ready():
 	rng.randomize()
@@ -45,13 +45,15 @@ func redrop_circles():
 func create_circle(number: int):
 	var view_size = get_viewport().size
 	
-	var new_circle = circle_1.instance() as CircleNumber
+	var new_circle = Circle1.instance() as CircleNumber
 	
 	new_circle.number = number
 	new_circle.position = Vector2(
 		rng.randf_range(0, view_size.x),
 		rng.randf_range(MIN_HEIGHT_TO_DROP, MAX_HEIGHT_TO_DROP)
 	)
+	
+	new_circle.load_number_texture()
 	
 	new_circle.connect("circle_pressed", $BallSelection, "_handle_circle_pressed")
 	
