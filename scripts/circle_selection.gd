@@ -39,7 +39,7 @@ func check_valid_three() -> bool:
 	return false
 
 func deselect_all_circles():
-	var remove_circles = selected_circles.duplicate(true)
+	var remove_circles = selected_circles.duplicate()
 	for circle in remove_circles:
 		select_circle(circle, false)
 
@@ -61,4 +61,3 @@ func select_circle(circle: CircleNumber, selected = true):
 			mat.set_shader_param("width", 0)
 			circle.modulate.a = 1
 			selected_circles.erase(circle)
-	

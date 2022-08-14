@@ -1,33 +1,34 @@
 extends Node
 
 var rng = RandomNumberGenerator.new()
-var spawn_limit = 14
+var spawn_limit = 15
 var circles = []
 
-var MIN_HEIGHT_TO_DROP = -1000
+var MIN_HEIGHT_TO_DROP = -1400
 var MAX_HEIGHT_TO_DROP = -600
 
 onready var circle_1 = preload("res://scenes/Circle1.tscn")
 
 func _ready():
-	# warning-ignore:return_value_discarded
-	get_tree().connect("screen_resized", self, "redrop_circles")
 	rng.randomize()
 	spawn_circles()
+	# warning-ignore:return_value_discarded
+	get_tree().connect("screen_resized", self, "redrop_circles")
 	
 func spawn_circles():
 	var answers = []
 	var numbers1 = []
 	var numbers2 = []
 
-	# spawn 2 circles per loop
-	for i in range(spawn_limit / 2):
+	for i in spawn_limit:
 		answers.append(rng.randi_range(2, 21))
 		numbers1.append(rng.randi_range(1, answers[i] - 1))
 		numbers2.append(answers[i] - numbers1[i])
 
+	for i in spawn_limit / 3:
 		create_circle(numbers1[i])
 		create_circle(numbers2[i])
+		create_circle(answers[i])
 		
 func redrop_circles():
 	var view_size = get_viewport().size

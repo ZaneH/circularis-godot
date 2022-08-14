@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://scripts/ball_selection.gd" type="Script" id=1]
+[ext_resource path="res://scripts/circle_selection.gd" type="Script" id=1]
 [ext_resource path="res://scripts/screen_bound.gd" type="Script" id=2]
 [ext_resource path="res://scripts/circle_manager.gd" type="Script" id=3]
 

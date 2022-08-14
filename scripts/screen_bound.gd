@@ -1,6 +1,5 @@
 extends CollisionShape2D
 
-export var is_top = false
 export var is_left = false
 export var is_bottom = false
 export var is_right = false
