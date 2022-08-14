@@ -1,7 +1,7 @@
 extends Node
 
 var rng = RandomNumberGenerator.new()
-var spawn_limit = 21
+var spawn_limit = 14
 var circles = []
 
 var MIN_HEIGHT_TO_DROP = -1000
@@ -10,6 +10,7 @@ var MAX_HEIGHT_TO_DROP = -600
 onready var circle_1 = preload("res://scenes/Circle1.tscn")
 
 func _ready():
+	# warning-ignore:return_value_discarded
 	get_tree().connect("screen_resized", self, "redrop_circles")
 	rng.randomize()
 	spawn_circles()
@@ -19,7 +20,8 @@ func spawn_circles():
 	var numbers1 = []
 	var numbers2 = []
 
-	for i in range(7):
+	# spawn 2 circles per loop
+	for i in range(spawn_limit / 2):
 		answers.append(rng.randi_range(2, 21))
 		numbers1.append(rng.randi_range(1, answers[i] - 1))
 		numbers2.append(answers[i] - numbers1[i])

@@ -7,7 +7,6 @@ signal circle_pressed
 onready var OutlineShader = load("res://shaders/Outline2D/smooth_outline.shader")
 
 var number: int
-var answer: int
 var rng = RandomNumberGenerator.new()
 
 var _scale
