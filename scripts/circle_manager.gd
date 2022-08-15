@@ -14,9 +14,10 @@ onready var Circle1 = preload("res://scenes/Circle1.tscn")
 func _ready():
 	rng.randomize()
 	spawn_circles()
-	resize_circles()
+	
 	# warning-ignore:return_value_discarded
 	get_tree().connect("screen_resized", self, "redrop_circles")
+	# warning-ignore:return_value_discarded
 	$CircleSelection.connect("scored_point", self, "_handle_scored_point")
 	
 func spawn_circles():
@@ -29,10 +30,11 @@ func spawn_circles():
 		numbers1.append(rng.randi_range(1, answers[i] - 1))
 		numbers2.append(answers[i] - numbers1[i])
 
+	var new_circles = []
 	for i in spawn_limit / 3:
-		create_circle(numbers1[i])
-		create_circle(numbers2[i])
-		create_circle(answers[i])
+		new_circles.append(create_circle(numbers1[i]))
+		new_circles.append(create_circle(numbers2[i]))
+		new_circles.append(create_circle(answers[i]))
 		
 func redrop_circles():
 	var view_size = get_viewport().size
@@ -43,21 +45,20 @@ func redrop_circles():
 			rng.randf_range(MIN_HEIGHT_TO_DROP, MAX_HEIGHT_TO_DROP)
 		)
 		
-	resize_circles()
+		resize_circle_for_screen(circle)
 
-func resize_circles():
+func resize_circle_for_screen(circle: CircleNumber):
 	var view_size = get_viewport().size
 	
-	for circle in circles:
-		var _scale
-		if (view_size.x > 1000):
-			_scale = rng.randf_range(0.4, 0.7)
-		elif (view_size.x > 600):
-			_scale = rng.randf_range(0.4, 0.6)
-		else:
-			_scale = rng.randf_range(0.4, 0.5)
-			
-		circle.set_custom_scale(_scale)
+	var _scale
+	if (view_size.x > 1024):
+		_scale = rng.randf_range(0.4, 0.7)
+	elif (view_size.x > 612):
+		_scale = rng.randf_range(0.4, 0.6)
+	else:
+		_scale = rng.randf_range(0.4, 0.5)
+	
+	circle.set_custom_scale(_scale)
 
 func create_circle(number: int):
 	var view_size = get_viewport().size
@@ -73,8 +74,12 @@ func create_circle(number: int):
 	new_circle.load_number_texture()
 	new_circle.connect("circle_pressed", $CircleSelection, "_handle_circle_pressed")
 	
+	resize_circle_for_screen(new_circle)
+	
 	add_child(new_circle)
 	circles.append(new_circle)
+	
+	return new_circle
 
 func _handle_scored_point(selected_circles: Array):
 	# remove selected_circles from the spawned circles array when a point is scored
@@ -82,4 +87,5 @@ func _handle_scored_point(selected_circles: Array):
 		circles.erase(c)
 
 	if (len(circles) == 0):
+		# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://scenes/Menu.tscn")
