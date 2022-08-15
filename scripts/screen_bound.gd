@@ -37,10 +37,10 @@ func resize_bounds():
 	elif (is_funnel_top_left):
 		line.a.x = 0
 		line.a.y = 0
-		line.b.x = -SAFE_ZONE
+		line.b.x = -SAFE_ZONE / 2
 		line.b.y = -SAFE_ZONE
 	elif (is_funnel_top_right):
 		line.a.x = view_size.x
 		line.a.y = 0
-		line.b.x = view_size.x + SAFE_ZONE
+		line.b.x = view_size.x + SAFE_ZONE / 2
 		line.b.y = -SAFE_ZONE

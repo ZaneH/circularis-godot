@@ -16,7 +16,7 @@ func _ready():
 	spawn_circles()
 	
 	# warning-ignore:return_value_discarded
-	get_tree().connect("screen_resized", self, "redrop_circles")
+	get_tree().connect("screen_resized", self, "_handle_screen_resized")
 	# warning-ignore:return_value_discarded
 	$CircleSelection.connect("scored_point", self, "_handle_scored_point")
 	
@@ -36,6 +36,12 @@ func spawn_circles():
 		new_circles.append(create_circle(numbers2[i]))
 		new_circles.append(create_circle(answers[i]))
 		
+func _handle_screen_resized():
+	for circle in circles:
+		resize_circle_for_screen(circle)
+	
+	redrop_circles()
+	
 func redrop_circles():
 	var view_size = get_viewport().size
 	for circle in circles:
@@ -44,8 +50,6 @@ func redrop_circles():
 			rng.randf_range(0, view_size.x),
 			rng.randf_range(MIN_HEIGHT_TO_DROP, MAX_HEIGHT_TO_DROP)
 		)
-		
-		resize_circle_for_screen(circle)
 
 func resize_circle_for_screen(circle: CircleNumber):
 	var view_size = get_viewport().size

@@ -9,10 +9,10 @@ b = Vector2( 1024, 600 )
 
 [sub_resource type="SegmentShape2D" id=2]
 a = Vector2( 1024, 0 )
-b = Vector2( 1424, -400 )
+b = Vector2( 1224, -400 )
 
 [sub_resource type="SegmentShape2D" id=3]
-b = Vector2( -400, -400 )
+b = Vector2( -200, -400 )
 
 [sub_resource type="SegmentShape2D" id=4]
 a = Vector2( 0, 600 )
