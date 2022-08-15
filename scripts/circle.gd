@@ -59,11 +59,12 @@ func _process(_delta):
 		velocity = Vector2.ZERO
 
 func _physics_process(delta):
-	var collision = move_and_collide(velocity * delta)
-	if (collision):
-		velocity = velocity.slide(collision.normal)
-	else:
-		velocity.y += GRAVITY
+	velocity = move_and_slide(velocity, Vector2.UP)
+	velocity.y += GRAVITY
+	
+	if (is_on_floor()):
+		# floor friction
+		velocity.x = lerp(velocity.x, 0, 0.03)
 	
 func _on_Area2D_input_event(_viewport, event: InputEvent, _shapeIdx):
 	if (event is InputEventMouseButton and
