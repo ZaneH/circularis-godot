@@ -14,6 +14,7 @@ onready var Circle1 = preload("res://scenes/Circle1.tscn")
 func _ready():
 	rng.randomize()
 	spawn_circles()
+	resize_circles()
 	# warning-ignore:return_value_discarded
 	get_tree().connect("screen_resized", self, "redrop_circles")
 	$CircleSelection.connect("scored_point", self, "_handle_scored_point")
@@ -36,12 +37,27 @@ func spawn_circles():
 func redrop_circles():
 	var view_size = get_viewport().size
 	for circle in circles:
-		circle.set_mobile_adjusted_scale()
 		circle.velocity = Vector2.ZERO
 		circle.position = Vector2(
 			rng.randf_range(0, view_size.x),
 			rng.randf_range(MIN_HEIGHT_TO_DROP, MAX_HEIGHT_TO_DROP)
 		)
+		
+	resize_circles()
+
+func resize_circles():
+	var view_size = get_viewport().size
+	
+	for circle in circles:
+		var _scale
+		if (view_size.x > 1000):
+			_scale = rng.randf_range(0.4, 0.7)
+		elif (view_size.x > 600):
+			_scale = rng.randf_range(0.4, 0.6)
+		else:
+			_scale = rng.randf_range(0.4, 0.5)
+			
+		circle.set_custom_scale(_scale)
 
 func create_circle(number: int):
 	var view_size = get_viewport().size
@@ -56,14 +72,6 @@ func create_circle(number: int):
 	
 	new_circle.load_number_texture()
 	new_circle.connect("circle_pressed", $CircleSelection, "_handle_circle_pressed")
-	
-	var _scale
-	if (view_size.x > 1000):
-		_scale = rng.randf_range(0.4, 0.7)
-	else:
-		_scale = rng.randf_range(0.4, 0.6)
-		
-	new_circle.set_custom_scale(_scale)
 	
 	add_child(new_circle)
 	circles.append(new_circle)
