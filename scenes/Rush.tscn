@@ -67,6 +67,7 @@ script = ExtResource( 5 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchor_right = 1.0
+mouse_filter = 2
 
 [node name="Menu" type="MarginContainer" parent="CanvasLayer/HBoxContainer"]
 margin_right = 116.0
